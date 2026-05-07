@@ -46,18 +46,7 @@ StudyBuddy/
    - Set username and password (save these!)
 5. Go to **Network Access** → Add IP Address → **Allow access from anywhere** (`0.0.0.0/0`) for development
 6. Go to **Clusters** → click **Connect** → **Connect your application**
-7. Copy the connection string. It looks like:
-   ```
-   mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
-   ```
-8. Open `server/.env` and update:
-   ```env
-   MONGO_URI=mongodb+srv://youruser:yourpassword@cluster0.xxxxx.mongodb.net/studybuddy?retryWrites=true&w=majority
-   JWT_SECRET=studybuddy_super_secret_jwt_2024
-   CLIENT_URL=http://localhost:5173
-   PORT=5000
-   NODE_ENV=development
-   ```
+7. connection string of mongoDb atlas
 
 ---
 
