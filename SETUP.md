@@ -159,40 +159,6 @@ You can test APIs using [Postman](https://www.postman.com) or [Insomnia](https:/
 
 ---
 
-## Step 6 — Production Deployment
-
-### Backend → Railway
-
-1. Go to [railway.app](https://railway.app) and sign in with GitHub
-2. Click **New Project** → **Deploy from GitHub Repo**
-3. Select the `StudyBuddy` repo and choose the **`server`** directory
-4. Add environment variables in Railway dashboard:
-   ```
-   MONGO_URI=mongodb+srv://...your Atlas URI...
-   JWT_SECRET=your_production_secret
-   CLIENT_URL=https://your-app.vercel.app
-   NODE_ENV=production
-   PORT=5000
-   ```
-5. Deploy! Railway will auto-detect Node.js and use `Procfile`
-6. Copy your Railway backend URL (e.g., `https://studybuddy-production.up.railway.app`)
-
-### Frontend → Vercel
-
-1. Go to [vercel.com](https://vercel.com) and sign in with GitHub
-2. Click **New Project** → import `StudyBuddy` repo
-3. Set **Root Directory** to `client`
-4. Add environment variables:
-   ```
-   VITE_API_URL=https://studybuddy-production.up.railway.app/api
-   VITE_SOCKET_URL=https://studybuddy-production.up.railway.app
-   ```
-5. Deploy! Vercel will auto-build with `npm run build`
-6. The `vercel.json` already handles SPA routing
-
-> **Important:** After deploying both, update `CLIENT_URL` in Railway to your Vercel URL to fix CORS.
-
----
 
 ## API Reference
 

@@ -212,17 +212,6 @@ GET http://localhost:5000/api/health
 
 ---
 
-## ☁️ Deployment
-
-| Service | Platform | Docs |
-|---|---|---|
-| Frontend | [Vercel](https://vercel.com) | Set root directory to `client/`, add env vars |
-| Backend | [Railway](https://railway.app) | Select `server/` directory, add env vars |
-
-> After deploying both services, update `CLIENT_URL` in Railway to your Vercel URL to fix CORS in production.
-
----
-
 ## 👨‍💻 Author
 
 **Sunny Kumar**
