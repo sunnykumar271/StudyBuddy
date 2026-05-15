@@ -35,8 +35,7 @@
 | Backend | Node.js + Express |
 | Authentication | JWT + bcryptjs |
 | Database | MongoDB Atlas (Mongoose) |
-| Frontend Deploy | Vercel |
-| Backend Deploy | Railway |
+
 
 ---
 

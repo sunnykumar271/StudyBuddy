@@ -235,5 +235,4 @@ You can test APIs using [Postman](https://www.postman.com) or [Insomnia](https:/
 | Backend | Node.js + Express |
 | Auth | JWT + bcryptjs |
 | Database | MongoDB Atlas (Mongoose) |
-| Frontend deploy | Vercel |
-| Backend deploy | Railway |
+
