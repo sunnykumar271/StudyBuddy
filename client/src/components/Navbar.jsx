@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, selectUser } from '../features/authSlice';
-import { BookOpen, Bell, LogOut, User, Settings, ChevronDown } from 'lucide-react';
+import { BookOpen, Bell, LogOut, User, Settings, ChevronDown } from 'lucide-react'; // Importing icons from lucide-react
 import ThemeToggle from './ThemeToggle';
 import Avatar from './Avatar';
 
@@ -39,10 +39,11 @@ const Navbar = () => {
           {user && (
             <>
               {/* Notifications placeholder */}
-              <button className="relative w-10 h-10 rounded-xl flex items-center justify-center
+             {/* <button className="relative w-10 h-10 rounded-xl flex items-center justify-center
                                  bg-white/10 hover:bg-white/20 transition-all duration-200">
-                <Bell className="w-5 h-5 text-white" />
+                <Bell className="w-5 h-5 text-white" /> 
               </button>
+              *}
 
               {/* User menu */}
               <div className="relative">

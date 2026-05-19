@@ -170,7 +170,7 @@ const Signup = () => {
               name="name"
               value={form.name}
               onChange={handleChange}
-              placeholder="e.g. Sunny Kumar"
+              placeholder="e.g. Enter your full name"
               className={`input ${errors.name ? 'border-red-400 focus:ring-red-300' : ''}`}
               autoComplete="name"
               autoFocus
