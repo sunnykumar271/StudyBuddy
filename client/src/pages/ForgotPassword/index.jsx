@@ -1,4 +1,8 @@
+// client/src/pages/ForgotPassword/index.jsx
+
 import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { BookOpen, Mail, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import ThemeToggle from '../../components/ThemeToggle';
@@ -9,18 +13,22 @@ import toast from 'react-hot-toast';
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError]       = useState("");
+  const navigate                = useNavigate();
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email) return;
     setLoading(true);
+    setError("");
     try {
-      await api.post('/auth/forgot-password', { email });
+      await axios.post(`${import.meta.env.VITE_API_URL}/auth/forgot-password`, { email });
+       // Save email in sessionStorage so the next page knows the email
+      sessionStorage.setItem('resetEmail', email);
       setSubmitted(true);
+      navigate("/verify-otp");
     } catch (err) {
-      // Even if email doesn't exist, show success (security best practice)
-      setSubmitted(true);
+      setError(err.response?.data?.message || "Something went wrong.");
     } finally {
       setLoading(false);
     }

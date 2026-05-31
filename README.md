@@ -19,7 +19,9 @@
 - 🔗 **Connection Requests** — Send, accept, and manage student connections
 - 🌓 **Dark / Light Mode** — Toggle theme from the navbar
 - 📋 **4-step Onboarding** — Set up your profile with skills, interests, and subjects
-
+- 🔐 **Forgot Password via OTP** — 6-digit OTP sent to Gmail using Nodemailer
+- ✅ **OTP Verification** — Time-limited OTP (10 min expiry) with bcrypt hashing
+- 🔒 **Secure Password Reset** — New password hashed via bcrypt before saving
 ---
 
 ## 🛠️ Tech Stack

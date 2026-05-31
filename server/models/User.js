@@ -23,6 +23,25 @@ const userSchema = new mongoose.Schema(
       minlength: [6, 'Password must be at least 6 characters'],
       select: false,
     },
+    otp: {
+  type: String,
+  default: null,
+  select: false,   // never returned in queries by default
+},
+    otpExpiry: {
+    type: Date,
+    default: null,
+    select: false,
+},
+    isOtpVerified: {
+    type: Boolean,
+    default: false,
+},
+    resetOtp: {
+      type: String,
+      default: null,
+           },
+    
     bio: {
       type: String,
       maxlength: [300, 'Bio cannot exceed 300 characters'],

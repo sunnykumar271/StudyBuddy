@@ -11,6 +11,8 @@ import DashboardLayout from './layouts/DashboardLayout';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
+import VerifyOtp from './pages/verifyOtp';
+import ResetPassword from './pages/resetPassword';
 import Onboarding from './pages/Onboarding';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
@@ -62,6 +64,14 @@ function App() {
           <Route
             path="/forgot-password"
             element={<PublicRoute><ForgotPassword /></PublicRoute>}
+          />
+          <Route
+            path="/verify-otp"
+            element={<VerifyOtp />} 
+          />
+          <Route
+            path="/reset-password"
+            element={<PublicRoute><ResetPassword /></PublicRoute>}
           />
         </Route>
 
