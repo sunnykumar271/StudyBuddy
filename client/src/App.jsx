@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectToken, selectUser } from './features/authSlice';
-import { Toaster } from 'react-hot-toast';
+
 
 // Layouts
 import MainLayout from './layouts/MainLayout';
@@ -38,17 +38,7 @@ const PublicRoute = ({ children }) => {
 function App() {
   return (
     <>
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          duration: 3000,
-          style: {
-            borderRadius: '12px',
-            padding: '12px 16px',
-            fontSize: '14px',
-          },
-        }}
-      />
+      
 
       <Routes>
         {/* Public routes */}

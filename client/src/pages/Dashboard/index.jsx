@@ -12,13 +12,13 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import Avatar from '../../components/Avatar';
 
 const StatCard = ({ icon: Icon, label, value, color }) => (
-  <div className="card p-5 flex items-center gap-4">
-    <div className={`w-12 h-12 ${color} rounded-xl flex items-center justify-center flex-shrink-0`}>
-      <Icon className="w-6 h-6 text-white" />
+  <div className="card p-5 flex items-center gap-4 ">
+    <div className={`w-12 h-12 ${color} rounded-xl flex items-center justify-center flex-shrink-0 `}>
+      <Icon className="w-6 h-6 text-white  " />
     </div>
-    <div>
-      <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{value}</p>
-      <p className="text-sm text-gray-500 dark:text-gray-400">{label}</p>
+    <div className= "min-w-0">
+      <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 ">{value}</p>
+      <p className="text-sm text-gray-500 dark:text-gray-400 break-words">{label}</p>
     </div>
   </div>
 );

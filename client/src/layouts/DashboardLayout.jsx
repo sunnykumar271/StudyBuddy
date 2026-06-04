@@ -8,7 +8,7 @@ const DashboardLayout = () => {
       <Navbar />
       <Sidebar />
       {/* Main content — offset for navbar (top-16) and sidebar (left-60 on lg) */}
-      <main className="pt-16 lg:pl-60 min-h-screen">
+      <main className="pt-16 lg:pl-60 pb-16 md:pb-0 min-h-screen">
         <div className="p-6 max-w-6xl mx-auto animate-fade-in">
           <Outlet />
         </div>

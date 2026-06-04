@@ -1,3 +1,4 @@
+// src/pages/Login/index.jsx
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -27,12 +28,12 @@ const Login = () => {
   const [showPwd, setShowPwd] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const [apiError, setApiError] = useState('');
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     if (errors[e.target.name]) setErrors({ ...errors, [e.target.name]: '' });
-    setApiError('');
+    
   };
 
   /* ── client-side validation ── */
@@ -46,7 +47,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setApiError('');
+    // setApiError('');
 
     const errs = validate();
     if (Object.keys(errs).length) {
@@ -64,8 +65,10 @@ const Login = () => {
       toast.success(`Welcome back, ${data.name}! 👋`);
       navigate(data.onboardingComplete ? '/dashboard' : '/onboarding');
     } catch (err) {
+  //      console.log('err.response.data:', err?.response?.data);
+  // console.log('resolved msg:', getErrorMessage(err));
       const msg = getErrorMessage(err);
-      setApiError(msg);
+      toast.error(msg);
       // Highlight both fields on wrong credentials
       if (err?.response?.status === 401) {
         setErrors({ email: ' ', password: ' ' }); // space = highlight without duplicate text
@@ -99,15 +102,15 @@ const Login = () => {
           </div>
         </div>
 
-        {/* Global API error banner */}
+        {/* Global API error banner
         {apiError && (
           <div className="flex items-start gap-2 bg-red-50 dark:bg-red-900/20 border
                           border-red-200 dark:border-red-800 rounded-xl p-3 text-sm
                           text-red-600 dark:text-red-400 animate-fade-in">
             <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-            <span>{apiError}</span>
+             <p className="text-sm text-red-600 dark:text-red-400">{apiError}</p>
           </div>
-        )}
+     //   )} */}
 
         <form onSubmit={handleSubmit} className="space-y-4" noValidate>
           {/* Email */}
