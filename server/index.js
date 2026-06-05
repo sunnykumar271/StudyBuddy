@@ -45,7 +45,7 @@ app.use('/api/connections', require('./routes/connections'));
 app.use('/api/groups', require('./routes/groups'));
 
 // Health check
-app.get('/api/health', (req, res) => {
+app.get('/', (req, res) => {
   res.json({ status: 'OK', message: 'StudyBuddy API is running 🚀' });
 });
 
