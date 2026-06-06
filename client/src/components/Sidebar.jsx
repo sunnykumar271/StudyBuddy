@@ -45,12 +45,12 @@ const Sidebar = () => {
       {/* ─── Mobile / Tablet: Hamburger button (hidden on lg+) ─────────── */}
       <button
         onClick={() => setDrawerOpen(true)}
-        className="fixed top-3 left-3 z-50 p-2 rounded-lg
+        className=" hidden md:flex lg:hidden fixed top-3 left-3 z-50 p-2 rounded-lg
                    bg-white dark:bg-gray-900
                    border border-gray-200 dark:border-gray-700
                    shadow-sm text-gray-600 dark:text-gray-300
                    hover:bg-gray-50 dark:hover:bg-gray-800
-                   transition-colors lg:hidden"
+                   transition-colors"
         aria-label="Open navigation"
       >
         <Menu className="w-5 h-5" />
@@ -59,7 +59,7 @@ const Sidebar = () => {
       {/* ─── Drawer Overlay ────────────────────────────────────────────── */}
       {drawerOpen && (
         <div
-          className="fixed inset-0 z-50 lg:hidden"
+          className=" hidden md:block fixed inset-0 z-50 lg:hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Navigation drawer"

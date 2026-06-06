@@ -18,7 +18,9 @@ const StatCard = ({ icon: Icon, label, value, color }) => (
     </div>
     <div className= "min-w-0">
       <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 ">{value}</p>
-      <p className="text-sm text-gray-500 dark:text-gray-400 break-words">{label}</p>
+      <p className=" text-[10px] sm:text-xs md:text-sm lg:text-base
+              text-gray-500 dark:text-gray-400
+              leading-tight whitespace-normal break-normal">{label}</p>
     </div>
   </div>
 );

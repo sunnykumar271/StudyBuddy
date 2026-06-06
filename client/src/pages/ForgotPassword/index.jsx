@@ -53,8 +53,8 @@ const ForgotPassword = () => {
             </h1>
             <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
               {submitted
-                ? `We sent a reset link to ${email}`
-                : "Enter your email and we'll send you a reset link"}
+                ? `We sent an OTP to ${email}`
+                : "Enter your email and we'll send you the OTP to reset your password."}
             </p>
           </div>
         </div>
@@ -69,8 +69,7 @@ const ForgotPassword = () => {
               </div>
               <div className="text-center space-y-1">
                 <p className="text-sm text-gray-600 dark:text-gray-300">
-                  If an account with <strong>{email}</strong> exists, you'll receive a password
-                  reset link within a few minutes.
+                  If an account with <strong>{email}</strong> exists, you'll receive an OTP within a few minutes.
                 </p>
                 <p className="text-xs text-gray-400">
                   Don't forget to check your spam folder.
@@ -114,9 +113,9 @@ const ForgotPassword = () => {
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
                   <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Sending link...
+                  Sending OTP...
                 </span>
-              ) : 'Send Reset Link'}
+              ) : 'Send OTP'}
             </button>
           </form>
         )}
