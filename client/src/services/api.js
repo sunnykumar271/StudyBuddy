@@ -7,7 +7,6 @@ const api = axios.create({
   baseURL: BASE_URL,
   headers: { 'Content-Type': 'application/json' },
   withCredentials: true,
-  timeout: 75000, // 75 seconds timeout for all requests
 });
 
 // Attach JWT from localStorage on every request
