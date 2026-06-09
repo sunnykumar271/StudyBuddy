@@ -66,7 +66,7 @@ StudyBuddy/
     ├── routes/               # Express routers
     ├── socket/index.js       # Socket.io event handlers
     ├── .env.example          # Backend env template
-    └── Procfile              # Railway start command
+    
 ```
 
 ---
@@ -200,6 +200,37 @@ GET http://localhost:5000/api/health
 | `leave-room` | Client → Server | `{ groupId }` |
 
 ---
+
+## 🌐 Deployment
+
+### Deploy Backend on Render (Free)
+
+1. Push backend folder to GitHub
+2. Go to [render.com](https://render.com) → New → Web Service
+3. Connect your GitHub repo
+4. Configure:
+   - **Build Command:** `npm install`
+   - **Start Command:** `node index.js`
+   - **Environment:** Node
+5. Add all environment variables from your `.env`
+6. Deploy → get your live URL e.g. `https://your-backend-api.onrender.com`
+7. In MongoDB Atlas → Network Access → Add `0.0.0.0/0`
+
+### Deploy Frontend on Vercel (Free)
+
+1. Push frontend folder to GitHub
+2. Go to [vercel.com](https://vercel.com) → New Project → Import repo
+3. Framework preset: **Vite**
+4. Add environment variable:
+   ```
+VITE_API_URL=https://your-backend.onrender.com/api
+VITE_SOCKET_URL=https://your-backend.onrender.com
+
+
+   ```
+5. Deploy → get your live URL e.g. `https://your-frontend.vercel.app`
+
+
 
 ## 🚨 Troubleshooting
 

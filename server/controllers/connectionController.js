@@ -1,3 +1,4 @@
+ // controllers/connectionController.js
 const Connection = require('../models/Connection');
 const User = require('../models/User');
 
@@ -121,4 +122,33 @@ const getPendingRequests = async (req, res, next) => {
   }
 };
 
-module.exports = { sendRequest, acceptRequest, rejectRequest, getMyConnections, getPendingRequests };
+// @desc  Get connection status with a specific user
+// @route GET /api/connections/status/:targetUserId
+// @access Private
+const getConnectionStatus = async (req, res, next) => {
+  try {
+    const { targetUserId } = req.params;
+
+    const connection = await Connection.findOne({
+      $or: [
+        { sender: req.user._id, receiver: targetUserId },
+        { sender: targetUserId, receiver: req.user._id },
+      ],
+    });
+
+    if (!connection) {
+      return res.json({ status: null, connectionId: null });
+    }
+
+    res.json({
+      status: connection.status,
+      connectionId: connection._id,
+      isSender: connection.sender.toString() === req.user._id.toString(),
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+module.exports = { sendRequest, acceptRequest, rejectRequest, getMyConnections, getPendingRequests, getConnectionStatus };

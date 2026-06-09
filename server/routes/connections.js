@@ -6,6 +6,7 @@ const {
   rejectRequest,
   getMyConnections,
   getPendingRequests,
+  getConnectionStatus
 } = require('../controllers/connectionController');
 const { protect } = require('../middlewares/auth');
 
@@ -14,5 +15,5 @@ router.post('/accept', protect, acceptRequest);
 router.post('/reject', protect, rejectRequest);
 router.get('/', protect, getMyConnections);
 router.get('/pending', protect, getPendingRequests);
-
+router.get('/status/:targetUserId', protect, getConnectionStatus);
 module.exports = router;

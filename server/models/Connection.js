@@ -1,3 +1,4 @@
+// models/Connection.js
 const mongoose = require('mongoose');
 
 const connectionSchema = new mongoose.Schema(

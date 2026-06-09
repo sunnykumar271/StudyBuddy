@@ -148,10 +148,25 @@ const forgotPassword = async (req, res, next) => {
     user.otpExpiry = new Date(Date.now() + otpExpiryinMs);
     user.isOTPVerified = false; // Reset OTP verification status on new request
     await user.save({ validateBeforeSave: false }); // Skip other validations
-
+   
+    try {
     // send OTP via email
     await sendOTPEmail(user.email, otp, user.name);
+  } catch (emailError) {
+    //  Log the real error on server for debugging
+      console.error("SMTP failed:", emailError.message);
 
+      // clean up OTP from DB since email sending failed
+      user.otp = undefined;
+      user.otpExpiry = undefined;
+      await user.save({ validateBeforeSave: false });
+
+      return res.status(503).json({
+        success: false,
+        message: "Failed to send OTP email. Please try again later.",
+      });
+    }
+    
     res.status(200).json({
       success: true,
       message: `OTP sent to ${email} if it exists. Please check your inbox. valid for ${process.env.OTP_EXPIRES_IN_MINUTES || 10} minutes.`,

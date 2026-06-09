@@ -1,3 +1,4 @@
+// src/pages/Profile/index.jsx
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -8,7 +9,7 @@ import Avatar from '../../components/Avatar';
 import ConnectionButton from '../../components/ConnectionButton';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { timeAgo } from '../../utils/helpers';
-
+import { connectionService } from '../../services/connectionService';
 const Profile = () => {
   const { id } = useParams();
   const currentUser = useSelector(selectUser);
@@ -18,7 +19,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
 
   const isOwnProfile = currentUser?._id === id;
-
+  const [isSender, setIsSender] = useState(false); // New state to track if current user is sender
   useEffect(() => {
     const fetchProfile = async () => {
       setLoading(true);
@@ -27,9 +28,22 @@ const Profile = () => {
         setProfile(data.user);
         setConnectionStatus(data.connectionStatus);
         setConnectionId(data.connectionId);
+        // ✅ Fetch real-time connection status to know isSender
+        if(currentUser?._id && id) {
+          try {
+            const {data : connData} = await connectionService.getConnectionStatus(id);
+            setConnectionStatus(connData.status);
+            setConnectionId(connData.connectionId);
+            setIsSender(connData.isSender); // backend already returns this
+          
       } catch (err) {
         console.error(err);
-      } finally {
+      }
+     }
+     } catch (err) {
+        console.error(err);
+      }
+     finally {
         setLoading(false);
       }
     };
@@ -67,6 +81,7 @@ const Profile = () => {
                 targetUserId={id}
                 initialStatus={connectionStatus}
                 connectionId={connectionId}
+                isSender={isSender}
               />
             )}
           </div>

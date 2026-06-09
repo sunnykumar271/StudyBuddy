@@ -28,7 +28,13 @@ const ForgotPassword = () => {
       setSubmitted(true);
       navigate("/verify-otp");
     } catch (err) {
-      setError(err.response?.data?.message || "Something went wrong.");
+      // Show specific message from backend, with fallback
+     const msg = err.response?.data?.message || "Failed to send OTP. Please try again.";
+     setError(msg);
+     toast.error(msg, {
+        duration: 3000,
+        icon: '❌',
+     });
     } finally {
       setLoading(false);
     }

@@ -1,10 +1,33 @@
+// src/components/UserCard.jsx
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Zap } from 'lucide-react';
 import Avatar from './Avatar';
 import ConnectionButton from './ConnectionButton';
 import { truncate } from '../utils/helpers';
+import { connectionService } from '../services/connectionService';
 
 const UserCard = ({ user, matchScore, currentUserId }) => {
+  const [connectionStatus, setConnectionStatus] = useState(null);
+  const [connectionId, setConnectionId] = useState(null);
+  const [statusLoading, setStatusLoading] = useState(true);
+  
+  // ✅ Fetch real connection status on load
+  useEffect(() => {
+    const fetchStatus = async () => {
+      if (!currentUserId || user._id === currentUserId) return;
+      try{
+        const { data } = await connectionService.getConnectionStatus(user._id);
+        setConnectionStatus(data.status); // null | 'pending' | 'accepted'
+        setConnectionId(data.connectionId);
+      } catch(err) {
+        console.error(err);
+      } finally {
+        setStatusLoading(false);
+      }
+      };
+      fetchStatus();
+  }, [user._id, currentUserId]);
   return (
     <div className="card-hover p-5 flex flex-col gap-3 animate-slide-up">
       {/* Header */}
@@ -53,7 +76,16 @@ const UserCard = ({ user, matchScore, currentUserId }) => {
 
       {/* Connect button */}
       {currentUserId && user._id !== currentUserId && (
-        <ConnectionButton targetUserId={user._id} />
+        statusLoading ? (
+          <div className="h-8 w-20 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+        ) : (
+        <ConnectionButton 
+        targetUserId={user._id}
+        initialStatus={connectionStatus}
+        connectionId={connectionId}
+        isSender={true} // from Users page, current user is always sender
+         />
+        )
       )}
     </div>
   );
